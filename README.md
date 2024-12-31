@@ -21,7 +21,7 @@ npm install react-router-dom
 ### Core Concepts
 #### 1. Routes and Route Components
 - Use `Route` to define a path and its associated component.
-- Wrap your application in a `BrowserRouter` or `HashRouter`.
+- Wrap your application in a `BrowserRouter`.
 
 #### 2. Nested Routes
 - Define routes inside other routes for hierarchical navigation.
@@ -35,33 +35,27 @@ npm install react-router-dom
 ### Usage Examples
 #### Basic Setup
 ```jsx
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import Home from './components/pages/Home';
+import Portfolio from './components/pages/Portfolio';
 
 function App() {
   return (
-    <Router>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-      </nav>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-      </Routes>
-    </Router>
+    <div className="App">
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/portfolio" element={<Portfolio />} />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
-function Home() {
-  return <h2>Home Page</h2>;
-}
-
-function About() {
-  return <h2>About Page</h2>;
-}
-
 export default App;
+
 ```
 
 #### 404 Page
@@ -70,50 +64,3 @@ export default App;
 ```
 
 ---
-
-### Advanced Topics
-#### Programmatic Navigation
-Use the `useNavigate` hook to navigate programmatically:
-```jsx
-import { useNavigate } from 'react-router-dom';
-
-function Login() {
-  const navigate = useNavigate();
-
-  function handleLogin() {
-    // Perform login logic
-    navigate('/dashboard');
-  }
-
-  return <button onClick={handleLogin}>Login</button>;
-}
-```
-
-#### Lazy Loading
-```jsx
-import React, { lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-
-const Home = lazy(() => import('./Home'));
-const About = lazy(() => import('./About'));
-
-function App() {
-  return (
-    <Router>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </Suspense>
-    </Router>
-  );
-}
-
-export default App;
-```
-
----
-
-### Conclusion
-React Router simplifies navigation in React applications. Mastering it can significantly enhance user experience in single-page applications (SPAs).
