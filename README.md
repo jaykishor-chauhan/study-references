@@ -57,10 +57,13 @@ function App() {
 export default App;
 
 ```
-
-#### 404 Page
-```jsx
-<Route path="*" element={<NotFound />} />
-```
-
 ---
+
+#### Add Link or navLink to the link where you want to route you page.
+```jsx
+<Link
+  to="/"
+  className="navbar-brand d-flex align-items-center"
+</Link>
+
+```
